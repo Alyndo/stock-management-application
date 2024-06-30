@@ -1,0 +1,173 @@
+# Stock Management System
+
+A comprehensive stock management system built with Java 17, Spring Boot, Spring Security, Redis, RabbitMQ, and MySQL. This system includes user authentication, product management, and order management functionalities.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
+- [Request Bodies](#request-bodies)
+- [Inserting Roles](#inserting-roles)
+- [Contributing](#contributing)
+
+## Features
+
+- User Authentication and Authorization
+- Product Management
+- Order Management
+- Redis Caching
+- RabbitMQ Messaging
+- Exception Handling and Logging
+
+## Technologies Used
+
+- Java 17
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- Spring Cache (Redis)
+- Spring AMQP (RabbitMQ)
+- MySQL
+- Maven
+
+## Prerequisites
+
+- Java 17
+- Maven
+- MySQL
+- Redis
+- RabbitMQ
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/stock-management-system.git
+   cd stock-management-system
+
+2. Install dependencies:
+   mvn clean install
+
+Configuration
+MySQL Configuration:
+Update the application.properties file with your MySQL database credentials:
+
+properties:
+spring.datasource.url=jdbc:mysql://localhost:3306/stock_management_db
+spring.datasource.username=root
+spring.datasource.password=rootpassword
+
+Redis Configuration:
+Ensure Redis is running on the default port (6379). You can modify the settings in application.properties if needed.
+
+RabbitMQ Configuration:
+Ensure RabbitMQ is running on the default port (5672). You can modify the settings in application.properties if needed.
+
+JWT Configuration:
+Set a secret key for JWT in application.properties:
+
+properties:
+spring.security.jwt.secret=YourSecretKey
+
+Running the Application
+Run the application using Maven:
+mvn spring-boot:run
+The application will start on http://localhost:8080.
+
+API Endpoints:
+
+User Authentication
+Signup: POST /api/auth/signup
+Login: POST /api/auth/login
+
+Product Management
+Create Product: POST /api/products
+Update Product: PUT /api/products/{id}
+Get All Products: GET /api/products
+Get Product by ID: GET /api/products/{id}
+Delete Product: DELETE /api/products/{id}
+
+Order Management
+Create Order: POST /api/orders
+Update Order: PUT /api/orders/{id}
+Get All Orders: GET /api/orders
+Get Order by ID: GET /api/orders/{id}
+Delete Order: DELETE /api/orders/{id}
+
+Request Bodies
+Signup
+json
+{
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "password": "password123",
+    "role": ["user"]
+}
+
+Login
+json
+{
+    "username": "newuser",
+    "password": "password123"
+}
+
+Create Product
+json
+{
+    "name": "Product Name",
+    "quantity": 100,
+    "price": 29.99
+}
+
+Update Product
+json
+{
+    "name": "Updated Product Name",
+    "quantity": 150,
+    "price": 24.99
+}
+
+Create Order
+json
+{
+    "productId": 1,
+    "quantity": 10,
+    "status": "PENDING"
+}
+
+Update Order
+json
+{
+    "productId": 1,
+    "quantity": 15,
+    "status": "SHIPPED"
+}
+
+Inserting Roles
+Roles are inserted automatically when the application starts. The following roles are added:
+
+ROLE_USER
+ROLE_MODERATOR
+ROLE_ADMIN
+The RoleInsertionScript class handles the insertion of these roles.
+
+Contributing
+Contributions are welcome! Please fork the repository and create a pull request.
+
+### Explanation of Sections
+
+1. **Features:** Highlights the main features of the application.
+2. **Technologies Used:** Lists the technologies and frameworks used in the project.
+3. **Prerequisites:** Lists the prerequisites required to run the application.
+4. **Installation:** Provides step-by-step instructions to clone and install the application.
+5. **Configuration:** Explains how to configure the application (MySQL, Redis, RabbitMQ, and JWT).
+6. **Running the Application:** Instructions to start the application.
+7. **API Endpoints:** Lists all available API endpoints with their descriptions.
+8. **Request Bodies:** Provides example request bodies for the various endpoints.
+9. **Inserting Roles:** Explains how roles are inserted into the database.
+10. **Contributing:** Information on how to contribute to the project.
